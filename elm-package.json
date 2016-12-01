@@ -1,7 +1,7 @@
 {
-    "version": "4.0.3",
-    "summary": "A customizable autocomplete component",
-    "repository": "https://github.com/thebritican/elm-autocomplete.git",
+    "version": "1.0.0",
+    "summary": "Dont use this",
+    "repository": "https://github.com/frenchdonuts/elm-autocomplete.git",
     "license": "BSD3",
     "source-directories": [
         "src"
