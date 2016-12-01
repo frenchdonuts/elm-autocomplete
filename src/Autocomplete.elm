@@ -280,7 +280,7 @@ See the [examples][] to get a better understanding!
 viewConfig :
     { toId : data -> String
     , ul : List (Attribute Never)
-    , li : KeySelected -> MouseSelected -> Int -> data -> HtmlDetails Never
+    , li : KeySelected -> MouseSelected -> data -> HtmlDetails Never
     }
     -> ViewConfig data
 viewConfig config =

@@ -329,23 +329,23 @@ viewList config howManyToShow state data =
         customUlAttr =
             List.map mapNeverToMsg config.ul
 
-        getKeyedItems i datum =
-            ( config.toId datum, viewItem config state i datum )
+        getKeyedItems datum =
+            ( config.toId datum, viewItem config state datum )
     in
         Html.Keyed.ul customUlAttr
             (List.take howManyToShow data
-                |> List.indexedMap getKeyedItems
+                |> List.map getKeyedItems
             )
 
 
-viewItem : ViewConfig data -> State -> Int -> data -> Html Msg
-viewItem { toId, li } { key, mouse } i data =
+viewItem : ViewConfig data -> State -> data -> Html Msg
+viewItem { toId, li } { key, mouse } data =
     let
         id =
             toId data
 
         listItemData =
-            li (isSelected key) (isSelected mouse) i data
+            li (isSelected key) (isSelected mouse) data
 
         customAttributes =
             (List.map mapNeverToMsg listItemData.attributes)
@@ -378,7 +378,7 @@ type alias HtmlDetails msg =
 type alias ViewConfig data =
     { toId : data -> String
     , ul : List (Attribute Never)
-    , li : KeySelected -> MouseSelected -> Int -> data -> HtmlDetails Never
+    , li : KeySelected -> MouseSelected -> data -> HtmlDetails Never
     }
 
 
@@ -408,7 +408,7 @@ type alias SectionNode msg =
 viewConfig :
     { toId : data -> String
     , ul : List (Attribute Never)
-    , li : KeySelected -> MouseSelected -> Int -> data -> HtmlDetails Never
+    , li : KeySelected -> MouseSelected -> data -> HtmlDetails Never
     }
     -> ViewConfig data
 viewConfig { toId, ul, li } =
