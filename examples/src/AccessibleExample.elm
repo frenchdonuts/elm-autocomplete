@@ -309,12 +309,12 @@ updateConfig =
 viewConfig : Autocomplete.ViewConfig Person
 viewConfig =
     let
-        customizedLi keySelected mouseSelected person =
+        customizedLi keySelected mouseSelected i person =
             { attributes =
                 [ classList [ ( "autocomplete-item", True ), ( "key-selected", keySelected || mouseSelected ) ]
                 , id person.name
                 ]
-            , children = [ Html.text person.name ]
+            , children = [ Html.text <| (toString i) ++ ")" ++ " " ++ person.name ]
             }
     in
         Autocomplete.viewConfig
